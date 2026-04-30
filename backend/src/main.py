@@ -29,7 +29,6 @@ def initialize_backend_application() -> fastapi.FastAPI:
 
     app.include_router(router=api_endpoint_router, prefix=settings.API_PREFIX)
 
-    return app
 
 
 backend_app: fastapi.FastAPI = initialize_backend_application()
