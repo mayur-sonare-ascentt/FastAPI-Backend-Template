@@ -34,6 +34,7 @@ def initialize_backend_application() -> fastapi.FastAPI:
 
 backend_app: fastapi.FastAPI = initialize_backend_application()
 
+# script running via uvicorn
 if __name__ == "__main__":
     uvicorn.run(
         app="main:backend_app",
