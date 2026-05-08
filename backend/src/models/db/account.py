@@ -3,14 +3,14 @@ import datetime
 import sqlalchemy
 from sqlalchemy.orm import Mapped as SQLAlchemyMapped, mapped_column as sqlalchemy_mapped_column
 from sqlalchemy.sql import functions as sqlalchemy_functions
-
+import UUID 
 from src.repository.table import Base
 
 
 class Account(Base):  # type: ignore
     __tablename__ = "account"
 
-    id: SQLAlchemyMapped[int] = sqlalchemy_mapped_column(primary_key=True, autoincrement="auto")
+    id: SQLAlchemyMapped[int] = sqlalchemy_mapped_column(primary_key=True,default=UUID.uuid())
     username: SQLAlchemyMapped[str] = sqlalchemy_mapped_column(
         sqlalchemy.String(length=64), nullable=False, unique=True
     )
