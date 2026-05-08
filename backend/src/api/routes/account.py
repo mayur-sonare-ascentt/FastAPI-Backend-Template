@@ -27,8 +27,6 @@ async def get_accounts(
     db_accounts = await account_repo.read_accounts()
     db_account_list: list = list()
 
-
-    print(account_repo["summary"]) 
     for db_account in db_accounts:
         access_token = jwt_generator.generate_access_token(account=db_account)
         account = AccountInResponse(
@@ -62,6 +60,9 @@ async def get_account(
     try:
         db_account = await account_repo.read_account_by_id(id=id)
         access_token = jwt_generator.generate_access_token(account=db_account)
+
+    except EntityDoesNotExist as e: 
+        print(e) 
 
     return AccountInResponse(
         id=db_account.id,
