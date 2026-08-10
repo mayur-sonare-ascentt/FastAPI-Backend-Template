@@ -61,8 +61,8 @@ async def get_account(
         db_account = await account_repo.read_account_by_id(id=id)
         access_token = jwt_generator.generate_access_token(account=db_account)
 
-    except EntityDoesNotExist:
-        raise await http_404_exc_id_not_found_request(id=id)
+    except EntityDoesNotExist as e: 
+        print(e) 
 
     return AccountInResponse(
         id=db_account.id,
